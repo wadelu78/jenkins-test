@@ -1,5 +1,9 @@
 pipeline {
+  // this is comment
     agent {
+              /*
+                This is a block comment
+              */
               docker {
                 image 'node:18-alpine'
                 reuseNode true
@@ -7,6 +11,7 @@ pipeline {
             }
 
     stages {
+      /*
         stage('Build') {
             steps {
                 sh '''
@@ -25,6 +30,23 @@ pipeline {
             sh '''
               test -f build/index.html
               npm test
+            '''
+          }
+        }
+        */
+        stage('E2E') {
+          agent {
+            docker {
+              image 'mcr.microsoft.com/playwright:v1.61.0-noble'
+              reuseNode true
+            }
+          }
+          steps {
+            echo 'E2E stage'
+            sh '''
+              npm ci
+              npm run serve:build
+              npx playwright test
             '''
           }
         }
