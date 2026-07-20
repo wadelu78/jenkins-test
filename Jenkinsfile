@@ -11,7 +11,6 @@ pipeline {
             }
 
     stages {
-      /*
         stage('Build') {
             steps {
                 sh '''
@@ -33,7 +32,6 @@ pipeline {
             '''
           }
         }
-        */
         stage('E2E') {
           agent {
             docker {
