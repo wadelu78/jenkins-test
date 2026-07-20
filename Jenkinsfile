@@ -37,7 +37,8 @@ pipeline {
             echo 'E2E stage'
             sh '''
               npm ci
-              npm run serve:build
+              npm run serve:build &
+              sleep 10
               npx playwright test
             '''
           }
