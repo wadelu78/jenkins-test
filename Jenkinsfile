@@ -1,15 +1,7 @@
 pipeline {
   // this is comment
-    agent {
-              /*
-                This is a block comment
-              */
-              docker {
-                image 'node:18-alpine'
-                reuseNode true
-              }
-            }
-
+    agent any
+    /*
     stages {
         stage('Build') {
             steps {
@@ -32,6 +24,7 @@ pipeline {
             '''
           }
         }
+        */
         stage('E2E') {
           agent {
             docker {
